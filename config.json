@@ -1,0 +1,32 @@
+{
+   "name":"Uploads",
+   "admin_menus":{
+      "GLOBAL__ADMIN_PLUGINS":{
+         "Uploads":{
+            "icon":"list",
+            "menu":{
+               "Gérer":{
+                  "icon":"cog",
+                  "route":"/admin/Uploads"
+               }
+            }
+         }
+      }
+   },
+   "navbar_routes":{
+      "Changelogs":"/uploads"
+   },
+   "author":"Fury_Craft",
+   "version":"0.1",
+   "useEvents":true,
+   "permissions":{
+      "available":[],
+      "default":{
+         "0":[],
+         "2":[]
+      }
+   },
+   "requirements":{
+      "CMS":"^1.2.0"
+   }
+}

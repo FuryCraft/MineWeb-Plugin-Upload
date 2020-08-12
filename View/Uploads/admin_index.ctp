@@ -1,0 +1,143 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><?= $Lang->get("UPLOADS_ADMIN_MAIN_TITLE"); ?></h3> <span style="float:right;"><?= $Lang->get("PLUGIN_DEVELOPED_BY"); ?></span>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <p style="text-align:justify;font-style:italic;"><?= $Lang->get("UPLOADS_PRESENTATION_TITLE"); ?></p>
+                        </div>
+                    </div>
+                    
+                    <h4 style="margin-top:30px;"><span class="fa fa-file-text"></span> <?= $Lang->get("UPLOADS_CONFIGURATION_TITLE"); ?></h4>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="container">
+                                <div class="row">
+                                    <form method="post" action="<?= $this->Html->url(["controller" => "Uploads", "action" => "index", "admin" => true]); ?>" style="margin-left: -15px;">
+
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label" id="level">
+                                                <?= $Lang->get("UPLOADS_LBL_LEVEL"); ?>
+                                                (
+                                                <span class="label label-success"><i class="fa fa-folder-open"></i> AUTRE</span>
+                                                <span class="label label-info"><i class="fa fa-picture-o"></i> IMAGE</span>
+                                                <span class="label label-warning"><i class=" fa fa-file"></i> FICHIER</span>
+                                                <span class="label label-danger"><i class="fa fa-file-archive-o"></i> ZIP</span>
+                                                )
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-exclamation-circle"></span></span>
+                                                <select class="form-control" id="level" name="level" required>
+                                                    <option value="0">AUTRE</option>
+                                                    <option value="1">IMAGE</option>
+                                                    <option value="2">FICHIER</option>
+                                                    <option value="3">ZIP</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label" id="author"><?= $Lang->get("UPLOADS_LBL_AUTHOR"); ?></label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                                <input type="text" class="form-control" id="author" name="author" placeholder="<?= $Lang->get("UPLOADS_PLACEHOLDER_AUTHOR"); ?>" minlength="2" maxlength="50" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label class="control-label" id="description"><?= $Lang->get("UPLOADS_LBL_COMMENT"); ?></label>
+                                            <?= $this->Html->script('admin/tinymce/tinymce.min.js') ?>
+                                            <script>
+                                            tinymce.init({
+                                                selector: "textarea",
+                                                height : 300,
+                                                width : '100%',
+                                                language : 'fr_FR',
+                                                plugins: "textcolor code image link",
+                                                toolbar: "fontselect fontsizeselect bold italic underline strikethrough link image forecolor backcolor alignleft aligncenter alignright alignjustify cut copy paste bullist numlist outdent indent blockquote code"
+                                            });
+                                            </script>
+                                            <textarea name="description"></textarea>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <span class="input-group-btn">
+                                                <input type="file" />
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="form-group col-md-12">
+                                            <span class="input-group-btn">
+                                                <input type="hidden" name="data[_Token][key]" value="<?= $csrfToken ?>">
+                                                <button type="submit" class="btn btn-primary"><?= $Lang->get("UPLOADS_TXT_SUBMIT"); ?></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top:30px;"><span class="fa fa-pencil"></span> <?= $Lang->get("UPLOADS_DELETE_TITLE"); ?></h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="container">
+                                <div class="row">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th><?= $Lang->get("TABLE_HEAD_LEVEL"); ?></th>
+                                                <th><?= $Lang->get("TABLE_HEAD_DATE"); ?></th>
+                                                <th><?= $Lang->get("TABLE_HEAD_AUTHOR"); ?></th>
+                                                <th><?= $Lang->get("TABLE_HEAD_COMMENT"); ?></th>
+                                                <th><?= $Lang->get("TABLE_HEAD_DELETE"); ?></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($uploads as $upload){ ?>
+                                            <tr>
+                                                <td class="col-md-1" style="font-size:18px;">
+
+                                                <?php
+                                                $level = $upload['Uploads']['level'];
+                                                if($level == 1){
+                                                    echo '<span class="label label-info" style="padding:8px;"><i class="fa fa-info-circle"></i> INFORMATION</span>';
+                                                }else if($level == 2){
+                                                    echo '<span class="label label-warning" style="padding:8px;"><i class=" fa fa-warning"></i> ATTENTION</span>';
+                                                }else if($level == 3){
+                                                    echo '<span class="label label-danger" style="padding:8px;"><i class="fa fa-warning"></i> IMPORTANT</span>';
+                                                }else{
+                                                    echo '<span class="label label-success" style="padding:8px;"><i class="fa fa-retweet"></i> MISE À JOUR</span>';
+                                                }
+                                                ?>
+
+                                                </td>
+                                                <td class="col-md-2"><?= date("d-m-Y H:i:s", strtotime($upload['Uploads']['created'])); ?></td>
+                                                <td class="col-md-1"><?= $upload['Uploads']['author']; ?></td>
+                                                <td class="col-md-9"><?= $upload['Uploads']['description']; ?></td>
+                                                <td>
+                                                    <a href="<?= $this->Html->url(["controller" => null, "action" => "delete", $upload['Uploads']['id']]); ?>" class="btn btn-danger" role="button">
+                                                        <span class="fa fa-trash"></span>
+                                                        <?= $Lang->get("UPLOADS_DELETE_LOG"); ?>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="clearfix"></div>
+</section>
