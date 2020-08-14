@@ -7,18 +7,18 @@
  * @since         ERROR
  */
 
-class UploadController extends AppController{
+class UploadsController extends AppController{
 
     /**
-     * Called when the route /Upload is called.
+     * Called when the route /uploads is called.
      */
     public function index(){
         //Load configuration
         $this->loadModel('Upload.Uploads');
         //Retrieves the last 35 logs
-        $Uploads = $this->Uploads->find('all', ['order' => ['created desc'], 'limit' => 35]);
+        $uploads = $this->Uploads->find('all', ['order' => ['created desc'], 'limit' => 35]);
 
-        return $this->set(compact('Uploads'));
+        return $this->set(compact('uploads'));
     }
 
     /**
@@ -29,26 +29,26 @@ class UploadController extends AppController{
             $this->layout = 'admin';
 
             //Get list of logs
-            $this->loadModel('Upload.Uploads');
-            $Uploads = $this->Uploads->find('all', ['order' => ['id desc']]);
+            $this->loadModel('Uploads.Uploads');
+            $uploads = $this->Uploads->find('all', ['order' => ['id desc']]);
 
             if ($this->request->is('post')) {
-                $Upload_level = $this->request->data["level"];
-                $Upload_author = $this->request->data["author"];
-                $Upload_comment = $this->request->data["description"];
+                $uploads_level = $this->request->data["level"];
+                $uploads_author = $this->request->data["author"];
+                $uploads_comment = $this->request->data["description"];
 
                 //Form validation
-                if(!isset($Upload_level) || ($Upload_level < 0 || $Upload_level > 4)){
+                if(!isset($uploads_level) || ($uploads_level < 0 || $uploads_level > 4)){
                     $this->Session->setFlash($this->Lang->get('UPLOADS_LEVEL_ERROR'), 'default.error');
                     return $this->redirect($this->referer());
                 }
 
-                if(!isset($Upload_author) || empty($Upload_author) || strlen($Upload_author) < 2 || strlen($Upload_author) > 50){
+                if(!isset($uploadslog_author) || empty($uploads_author) || strlen($uploads_author) < 2 || strlen($uploads_author) > 50){
                     $this->Session->setFlash($this->Lang->get('UPLOADS_AUTHOR_ERROR'), 'default.error');
                     return $this->redirect($this->referer());
                 }
 
-                if(!isset($Upload_comment) || empty($Upload_comment) || strlen($Upload_comment) < 10){
+                if(!isset($uploads_comment) || empty($uploads_comment) || strlen($uploads_comment) < 10){
                     $this->Session->setFlash($this->Lang->get('UPLOADS_COMMENT_ERROR'), 'default.error');
                     return $this->redirect($this->referer());
                 }
@@ -57,9 +57,9 @@ class UploadController extends AppController{
                 $this->Uploads->create();
                 if(
                     $this->Uploads->save(
-                        ['level' => $Upload_level, 
-                        'author' => $Upload_author, 
-                        'description' => $Upload_comment, 
+                        ['level' => $uploads_level, 
+                        'author' => $uploads_author, 
+                        'description' => $uploads_comment, 
                         'created' => date('Y-m-d H:i:s')
                    ])
                 ){
@@ -72,7 +72,7 @@ class UploadController extends AppController{
                 return $this->redirect($this->referer());
             }
 
-            return $this->set(compact('Uploads'));
+            return $this->set(compact('uploads'));
         }else{
             return $this->redirect('/');
         }
@@ -89,7 +89,7 @@ class UploadController extends AppController{
                 throw new MethodNotAllowedException();
             }
 
-            $this->loadModel('Upload.Uploads');
+            $this->loadModel('Uploads.Uploads');
             if ($this->Uploads->delete($id)){
                 $this->Session->setFlash($this->Lang->get('UPLOADS_ADMIN_DELETE'), 'default.success');
             }

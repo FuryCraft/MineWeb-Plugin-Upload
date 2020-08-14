@@ -7,6 +7,6 @@
  * @since         ERROR
  */
 
-Router::connect('/admin/Uploads', ['controller' => 'Uploads', 'action' => 'index', 'plugin' => 'Uploads', 'admin' => true]);
-Router::connect('/admin/Uploads/delete/:id', ['controller' => 'Uploads', 'action' => 'delete', 'plugin' => 'Uploads', 'admin' => true], ['pass' => ['id']], ['id' => '[0-9]+']);
-Router::connect('/Uploads', ['controller' => 'Uploads', 'action' => 'index', 'plugin' => 'Uploads']);
+Router::connect('/admin/uploads', ['controller' => 'Uploads', 'action' => 'index', 'plugin' => 'Uploads', 'admin' => true]);
+Router::connect('/admin/uploads/delete/:id', ['controller' => 'Uploads', 'action' => 'delete', 'plugin' => 'Uploads', 'admin' => true], ['pass' => ['id']], ['id' => '[0-9]+']);
+Router::connect('/uploads', ['controller' => 'Uploads', 'action' => 'index', 'plugin' => 'Uploads']);
