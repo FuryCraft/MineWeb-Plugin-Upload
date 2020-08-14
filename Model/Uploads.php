@@ -10,6 +10,6 @@
 class Uploads extends AppModel
 {
 
-	public $tablePrefix = 'uploads__';
+	public $tablePrefix = 'uploads__list';
 
 }
