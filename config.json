@@ -5,16 +5,16 @@
          "Uploads":{
             "icon":"list",
             "menu":{
-               "Gérer":{
+               "Gérer les uploads":{
                   "icon":"cog",
-                  "route":"/admin/Uploads"
+                  "route":"/admin/uploads"
                }
             }
          }
       }
    },
    "navbar_routes":{
-      "Changelogs":"/uploads"
+      "Uploads":"/uploads"
    },
    "author":"Fury_Craft",
    "version":"0.1",
