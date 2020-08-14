@@ -25,13 +25,13 @@
               <?php
               $level = $upload['Uploads']['level'];
               if($level == 1){
-                echo '<span class="label label-info" style="padding:8px;"><i class="fa fa-picture-o"></i> IMAGE</span>';
+                echo '<span class="label label-info" style="padding:8px;"><i class="fa fa-info-circle"></i> INFORMATION</span>';
               }else if($level == 2){
-                echo '<span class="label label-warning" style="padding:8px;"><i class=" fa fa-file"></i> FICHIER</span>';
+                echo '<span class="label label-warning" style="padding:8px;"><i class=" fa fa-warning"></i> ATTENTION</span>';
               }else if($level == 3){
-                echo '<span class="label label-danger" style="padding:8px;"><i class="fa fa-file-archive-o"></i> ZIP</span>';
+                echo '<span class="label label-danger" style="padding:8px;"><i class="fa fa-warning"></i> IMPORTANT</span>';
               }else{
-                echo '<span class="label label-success" style="padding:8px;"><i class="fa fa-folder-open"></i> AUTRE</span>';
+                echo '<span class="label label-success" style="padding:8px;"><i class="fa fa-retweet"></i> MISE À JOUR</span>';
               }
               ?>
 

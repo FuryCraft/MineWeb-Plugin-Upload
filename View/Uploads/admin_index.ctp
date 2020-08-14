@@ -24,19 +24,19 @@
                                             <label class="control-label" id="level">
                                                 <?= $Lang->get("UPLOADS_LBL_LEVEL"); ?>
                                                 (
-                                                <span class="label label-success"><i class="fa fa-folder-open"></i> AUTRE</span>
-                                                <span class="label label-info"><i class="fa fa-picture-o"></i> IMAGE</span>
-                                                <span class="label label-warning"><i class=" fa fa-file"></i> FICHIER</span>
-                                                <span class="label label-danger"><i class="fa fa-file-archive-o"></i> ZIP</span>
+                                                <span class="label label-success"><i class="fa fa-retweet"></i> MISE À JOUR</span>
+                                                <span class="label label-info"><i class="fa fa-info-circle"></i> INFORMATION</span>
+                                                <span class="label label-warning"><i class=" fa fa-warning"></i> ATTENTION</span>
+                                                <span class="label label-danger"><i class="fa fa-warning"></i> IMPORTANT</span>
                                                 )
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-exclamation-circle"></span></span>
                                                 <select class="form-control" id="level" name="level" required>
-                                                    <option value="0">AUTRE</option>
-                                                    <option value="1">IMAGE</option>
-                                                    <option value="2">FICHIER</option>
-                                                    <option value="3">ZIP</option>
+                                                    <option value="0">MISE À JOUR</option>
+                                                    <option value="1">INFORMATION</option>
+                                                    <option value="2">ATTENTION</option>
+                                                    <option value="3">IMPORTANT</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -65,12 +65,6 @@
                                             <textarea name="description"></textarea>
                                         </div>
 
-                                        <div class="form-group col-md-12">
-                                            <span class="input-group-btn">
-                                                <input type="file" />
-                                            </span>
-                                        </div>
-                                        
                                         <div class="form-group col-md-12">
                                             <span class="input-group-btn">
                                                 <input type="hidden" name="data[_Token][key]" value="<?= $csrfToken ?>">
