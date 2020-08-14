@@ -3,7 +3,7 @@
    "admin_menus":{
       "GLOBAL__ADMIN_PLUGINS":{
          "Uploads":{
-            "icon":"list",
+            "icon":"upload",
             "menu":{
                "Gérer les uploads":{
                   "icon":"cog",
